@@ -29,7 +29,7 @@ function onGLC(glc) {
 			x3: 500,
 			y3: 200,
 			lineWidth: function( t ){
-				return 0.1 + ( Math.sin( t * (Math.PI) ) * 3 );
+				return 0.1 + ( Math.sin( t * Math.PI ) * 3 );
 			},
 			strokeStyle: color.randomRGB( 51, 255 ),
 			percent: 0.1,
