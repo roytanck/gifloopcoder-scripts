@@ -1,48 +1,43 @@
 function onGLC(glc) {
 	glc.loop();
 	// glc.playOnce();
-	glc.size( 420, 420 );
+	glc.size( 400, 400 );
 	glc.setDuration(2);
 	glc.setFPS(30);
-	//glc.setMode("single");
-	//glc.setEasing(false);
-	glc.setMaxColors(16);
+	glc.setMode("single");
+	glc.setEasing(false);
+	glc.setMaxColors(256);
 	var list = glc.renderList,
 		width = glc.w,
 		height = glc.h,
 		color = glc.color;
 
 	// your code goes here:
-	glc.styles.backgroundColor = '#ffffff';
-	var grid = 5;
-	var padding = 40;
-	var gridsizeX = ( width - 2*padding ) / grid;
-	var gridsizeY = ( height - 2*padding ) / grid;
+	glc.styles.backgroundColor = '#ddeeff';
+	var nr = 500;
 
-	for( var x=0; x<grid; x++){
-		for( var y=0; y<grid; y++){
+	for( var i=0; i<nr; i++){
 
-			var basex = padding + ( x * gridsizeX + gridsizeX/2 );
-			var basey = padding + ( y * gridsizeY + gridsizeY/2 );
-			var topx = basex + ( basex - (width/2) ) / 15;
-			var topy = basey + ( basey - (width/2) ) / 15;
-			var fromcenter = Math.sqrt( Math.pow( ( basex - (width/2) ), 2 ) + Math.pow( ( basey - (height/2) ), 2 ) );
+		var size = Math.random() * 100 + 20;
 
-			list.addCircle({
-				x: [ basex, topx ],
-				y: [ basey, topy ],
-				radius: [ 25, 28 ],
-				stroke: false,
-				fill: true,
-				fillStyle: color.rgba( 255, 255, 255, 1 ),
-				shadowColor: [ color.rgba( 0, 0, 0, 0.4 ), color.rgba( 0, 0, 0, 0.25 ) ],
-				shadowOffsetX: [ 0, 15 ],
-				shadowOffsetY: [ 0, 15 ],
-				shadowBlur: [ 0, 20 ],
-				phase: -fromcenter  / 750
-			});
-
-		}
+		list.addArrow({
+			x: Math.random() * width,
+			y: Math.random() * height,
+			w: size,
+			h: size,
+			pointPercent: 0.6,
+			shaftPercent: 0.3,
+			rotation: [0,360],
+			stroke: true,
+			lineWidth: 1.5,
+			strokeStyle: color.rgba( 0, 0, 0, 0.5 ),
+			fill: true,
+			fillStyle: '#99ccff',
+			shadowColor: color.rgba( 0, 0, 0, 0.2 ),
+			shadowOffsetX: 8,
+			shadowOffsetY: 8,
+			shadowBlur: 0,
+		});
 	}
 
 }
