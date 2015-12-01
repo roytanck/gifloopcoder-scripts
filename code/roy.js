@@ -2,11 +2,11 @@ function onGLC(glc) {
 	glc.loop();
 	// glc.playOnce();
 	glc.size( 400, 400 );
-	glc.setDuration(2);
-	glc.setFPS(30);
-	glc.setMode("single");
-	glc.setEasing(false);
-	glc.setMaxColors(256);
+	glc.setDuration( 0.5 );
+	glc.setFPS( 30 );
+	glc.setMode( "single" );
+	glc.setEasing( false );
+	glc.setMaxColors( 32 );
 	var list = glc.renderList,
 		width = glc.w,
 		height = glc.h,
@@ -14,30 +14,31 @@ function onGLC(glc) {
 
 	// your code goes here:
 	glc.styles.backgroundColor = '#ddeeff';
-	var nr = 500;
+	var rings = 10;
+	var size = 10;
+	var mindist = 30;
 
-	for( var i=0; i<nr; i++){
+	for( var r=0; r<rings; r++){
 
-		var size = Math.random() * 100 + 20;
+		var radius = 40 + r * mindist;
+		var circlesize = 2 * Math.PI * radius;
+		var nrofdots = Math.max( Math.floor( circlesize / mindist ), 1 );
+		//if( nrofdots == 0 ){ nrofdots = 1; }
 
-		list.addArrow({
-			x: Math.random() * width,
-			y: Math.random() * height,
-			w: size,
-			h: size,
-			pointPercent: 0.6,
-			shaftPercent: 0.3,
-			rotation: [0,360],
-			stroke: true,
-			lineWidth: 1.5,
-			strokeStyle: color.rgba( 0, 0, 0, 0.5 ),
-			fill: true,
-			fillStyle: '#99ccff',
-			shadowColor: color.rgba( 0, 0, 0, 0.2 ),
-			shadowOffsetX: 8,
-			shadowOffsetY: 8,
-			shadowBlur: 0,
-		});
+		for( var i=0; i<nrofdots; i++ ){
+			list.addCircle({
+				x: [ ( (width/2) + Math.sin( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (width/2) + Math.sin( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],
+				y: [ ( (height/2) + -Math.cos( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (height/2) + -Math.cos( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],
+				radius: size,
+				stroke: false,
+				fill: true,
+				fillStyle: color.rgba( 255, 255, 255, 1 ),
+				shadowColor: color.rgba( 0, 0, 0, 0.25 ),
+				shadowOffsetX: 5,
+				shadowOffsetY: 5,
+				shadowBlur: 10,
+			});
+		}
 	}
 
 }
