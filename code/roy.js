@@ -13,22 +13,25 @@ function onGLC(glc) {
 		color = glc.color;
 
 	// your code goes here:
-	glc.styles.backgroundColor = '#ddeeff';
-	var rings = 10;
-	var size = 10;
-	var mindist = 30;
+	glc.styles.backgroundColor = '#bbddff';
+	var rings = 5;
+	var size = 20;
+	var mindist = 60;
 
 	for( var r=0; r<rings; r++){
 
-		var radius = 20 + r * mindist;
+		var radius = 40 + r * mindist;
 		var circlesize = 2 * Math.PI * radius;
 		var nrofdots = Math.max( Math.floor( circlesize / mindist ), 1 );
-		//if( nrofdots == 0 ){ nrofdots = 1; }
 
 		for( var i=0; i<nrofdots; i++ ){
+
+			var gradient = color.createRadialGradient( -6, -6, 0, -6, -6, 26 );
+			gradient.addColorStop( 0, '#ffffff' );
+    		gradient.addColorStop( 0.8, '#667788' );
+    		gradient.addColorStop( 1, '#4466aa' );
+
 			list.addCircle({
-				/*x: [ ( (width/2) + Math.sin( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (width/2) + Math.sin( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],
-				y: [ ( (height/2) + -Math.cos( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (height/2) + -Math.cos( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],*/
 				x: function( t ){
 					return (width/2) + Math.sin( (2*Math.PI) * ( ( t+this.p_nr ) / this.p_nrofdots ) ) * this.p_radius;
 				},
@@ -38,11 +41,11 @@ function onGLC(glc) {
 				radius: size,
 				stroke: false,
 				fill: true,
-				fillStyle: color.rgba( 255, 255, 255, 1 ),
-				shadowColor: color.rgba( 0, 0, 0, 0.25 ),
-				shadowOffsetX: 5,
-				shadowOffsetY: 5,
-				shadowBlur: 10,
+				fillStyle: gradient,//color.rgba( 255, 255, 255, 1 ),
+				shadowColor: color.rgba( 0, 0, 0, 0.15 ),
+				shadowOffsetX: 10,
+				shadowOffsetY: 10,
+				shadowBlur: 5,
 				p_radius: radius,
 				p_nr: i,
 				p_nrofdots: nrofdots
