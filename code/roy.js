@@ -27,8 +27,14 @@ function onGLC(glc) {
 
 		for( var i=0; i<nrofdots; i++ ){
 			list.addCircle({
-				x: [ ( (width/2) + Math.sin( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (width/2) + Math.sin( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],
-				y: [ ( (height/2) + -Math.cos( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (height/2) + -Math.cos( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],
+				/*x: [ ( (width/2) + Math.sin( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (width/2) + Math.sin( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],
+				y: [ ( (height/2) + -Math.cos( (2*Math.PI) * (i/nrofdots) ) * radius ), ( (height/2) + -Math.cos( (2*Math.PI) * ((i+1)/nrofdots) ) * radius ) ],*/
+				x: function( t ){
+					return (width/2) + Math.sin( (2*Math.PI) * ( ( t+this.p_nr ) / this.p_nrofdots ) ) * this.p_radius;
+				},
+				y: function( t ){
+					return (height/2) + -Math.cos( (2*Math.PI) * ( ( t+this.p_nr ) / this.p_nrofdots ) ) * this.p_radius;
+				},
 				radius: size,
 				stroke: false,
 				fill: true,
@@ -37,6 +43,9 @@ function onGLC(glc) {
 				shadowOffsetX: 5,
 				shadowOffsetY: 5,
 				shadowBlur: 10,
+				p_radius: radius,
+				p_nr: i,
+				p_nrofdots: nrofdots
 			});
 		}
 	}
