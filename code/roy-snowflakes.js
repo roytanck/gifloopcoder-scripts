@@ -3,7 +3,7 @@ function onGLC(glc) {
 	// glc.playOnce();
 	glc.size( 400, 400 );
 	glc.setDuration( 2 );
-	glc.setFPS( 25 );
+	glc.setFPS( 30 );
 	//glc.setMode( "single" );
 	//glc.setEasing( false );
 	glc.setMaxColors( 32 );
