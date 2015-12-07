@@ -1,78 +1,67 @@
 function onGLC(glc) {
 	glc.loop();
 	// glc.playOnce();
-	glc.size( 400, 400 );
-	glc.setDuration( 2 );
+	glc.size( 600, 400 );
+	glc.setDuration( 5 );
 	glc.setFPS( 30 );
 	glc.setMode( "single" );
-	//glc.setEasing( false );
-	glc.setMaxColors( 32 );
-	glc.setQuality( 1 );
+	glc.setEasing( false );
+	glc.setMaxColors( 256 );
+	glc.setQuality( 10 );
 	var list = glc.renderList,
 		width = glc.w,
 		height = glc.h,
 		color = glc.color;
 
 	// your code goes here:
-	glc.styles.backgroundColor = '#446f88';
-	var grid = 5;
-	var size = width / grid;
-	var points = 6;
-	var angle = ( 120/360 ) * 2 * Math.PI;
-	var dist = size;
-	var transx = Math.sin( angle ) * dist;
-	var transy = -Math.cos( angle ) * dist;
+	glc.styles.backgroundColor = '#339966';
+	var shadowDist = 20;
+	var shadowBlur = 20;
 
-	for( var x=-(grid+1); x<(grid+1); x++ ){
+	list.addText({
+		x: width/2,
+		y: height/2 - 60,
+		text: 'Merry',
+		/*fillStyle: gradient,*/
+		fillStyle: function( t ){
+			var gx0 = Math.round( Math.sin( t*2*Math.PI ) * 100 );
+			var gy0 = Math.round( -Math.cos( t*2*Math.PI ) * 100 );
+			var gx1 = -gx0;
+			var gy1 = -gy0;
+			var gradient = color.createLinearGradient( gx0, gy0, gx1, gy1 );
+			gradient.addColorStop( 0, 'white' );
+			gradient.addColorStop( 1, 'blue' );
+			return gradient;
+		},
+		fontSize: 80,
+		fontWeight: 'normal',
+		fontFamily: 'Bigshot One',
+		shadowColor: color.rgba( 0, 0, 0, 0.5 ),
+		shadowOffsetX: function( t ){
+			return Math.sin( t*2*Math.PI ) * shadowDist;
+		},
+		shadowOffsetY: function( t ){
+			return -Math.cos( t*2*Math.PI ) * shadowDist;
+		},
+		shadowBlur: shadowBlur,
+	});
 
-		list.addLine({
-			x0: width/2 + ( -grid * transx ) + ( x * transx ),
-			y0: height/2 + ( x * transy ) - ( -grid * transy ) - Math.cos( angle ) * ( size/2.5 ),
-			x1: width/2 + ( grid * transx ) + ( x * transx ),
-			y1: height/2 + ( x * transy ) - ( grid * transy ) - Math.cos( angle ) * ( size/2.5 ),
-			lineWidth: size/1.8,
-			strokeStyle: color.rgba( 0, 0, 0, 0.3 ),
-
-		});
-
-		var linePhase = Math.random();
-
-		for( var y=-(grid+1); y<(grid+1); y++ ){
-
-			var xpos = width/2 + ( y * transx ) + ( x * transx );
-			var ypos = height/2 + ( x * transy ) - ( y * transy );
-			var nextxpos = width/2 + ( (y-1) * transx ) + ( x * transx );
-			var nextypos = height/2 + ( x * transy ) - ( (y-1) * transy );
-
-			list.addPoly({
-				x: [ xpos, nextxpos ],
-				y: [ ypos, nextypos ],
-				radius: size/2.5,
-				sides: points,
-				stroke: true,
-				strokeStyle: color.rgba( 0, 0, 0, 0.4 ),
-				lineWidth: 1.5,
-				rotation: 180 / points,
-				fill: true,
-				fillStyle: '#eecc8f',
-				phase: linePhase
-			});
-			
-			list.addStar({
-				x: [ xpos, nextxpos ],
-				y: [ ypos, nextypos ],
-				outerRadius: size/2.5,
-				innerRadius: 0,
-				points: points/2,
-				stroke: true,
-				strokeStyle: color.rgba( 0, 0, 0, 0.4 ),
-				lineWidth: 1.5,
-				rotation: -180 / points,
-				fill: false,
-				phase: linePhase
-			});
-
-		}
-	}
+	list.addText({
+		x: width/2,
+		y: height/2 + 20,
+		text: 'Christmas!',
+		fillStyle: 'white',
+		fontSize: 80,
+		fontWeight: 'normal',
+		fontFamily: 'Bigshot One',
+		shadowColor: color.rgba( 0, 0, 0, 0.5 ),
+		shadowOffsetX: function( t ){
+			return Math.sin( t*2*Math.PI ) * shadowDist;
+		},
+		shadowOffsetY: function( t ){
+			return -Math.cos( t*2*Math.PI ) * shadowDist;
+		},
+		shadowBlur: shadowBlur,
+	});
 
 }
