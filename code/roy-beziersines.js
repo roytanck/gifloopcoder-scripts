@@ -21,18 +21,20 @@ function onGLC(glc) {
 	for( var w=0; w<waves; w++ ){
 
 		for( var i=0; i<nr; i++ ){
-			list.addCircle({
-				x: i * ( width/nr ),
-				y: function( t ){
-					return getY( t, this.nr, 0, false );
-				},
-				radius: 2,
-				stroke: false,
-				fill: true,
-				fillStyle: color.rgba( 255, 255, 255, 0.6 ),
-				nr: i,
-				phase: w / ( waves * 2.2 )
-			});
+			if( i != 0 ){
+				list.addCircle({
+					x: i * ( width/nr ),
+					y: function( t ){
+						return getY( t, this.nr, 0, false );
+					},
+					radius: 2,
+					stroke: false,
+					fill: true,
+					fillStyle: color.rgba( 255, 255, 255, 0.6 ),
+					nr: i,
+					phase: w / ( waves * 2.2 )
+				});
+			}
 
 			list.addBezierCurve({
 				x0: function( t ){
