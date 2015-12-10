@@ -22,7 +22,7 @@ function onGLC(glc) {
 
 	for( var c=0; c<clusters; c++ ){
 		var bx = width/2 + Math.sin( (c/clusters)*2*Math.PI ) * clusterRadius;
-		var by = width/2 - Math.cos( (c/clusters)*2*Math.PI ) * clusterRadius;
+		var by = height/2 - Math.cos( (c/clusters)*2*Math.PI ) * clusterRadius;
 
 		for( var i=0; i<nr; i++ ){
 

@@ -6,23 +6,23 @@ function onGLC(glc) {
 	glc.setMode( "single" );
 	glc.setEasing( false );
 	glc.setMaxColors( 256 );
-	glc.setQuality( 1 );
+	glc.setQuality( 10 );
 	var list = glc.renderList,
 		width = glc.w,
 		height = glc.h,
 		color = glc.color;
 
 	// your code goes here:
-	glc.styles.backgroundColor = color.rgba( 0, 0, 0, 1 );
+	glc.styles.backgroundColor = color.rgba( 255, 255, 255, 1 );
 
-	var cols = [ '#f00', '#0f0', '#00f' ];
+	var cols = [ '#d00', '#0d0', '#00d' ];
 	var clusters = 5;
-	var clusterRadius = 140;
+	var clusterRadius = 280;
 	var nr = cols.length;
 
 	for( var c=0; c<clusters; c++ ){
 		var bx = width/2 + Math.sin( (c/clusters)*2*Math.PI ) * clusterRadius;
-		var by = width/2 - Math.cos( (c/clusters)*2*Math.PI ) * clusterRadius;
+		var by = height/2 + -Math.cos( (c/clusters)*2*Math.PI ) * clusterRadius;
 
 		for( var i=0; i<nr; i++ ){
 
@@ -33,11 +33,11 @@ function onGLC(glc) {
 				y: function( t ){
 					return this.by - Math.cos( (t+this.nr/nr)*2*Math.PI ) * ( Math.sin(t*2*Math.PI) * this.r );
 				},
-				radius: 85,
+				radius: 200,
 				stroke: false,
 				fill: true,
 				fillStyle: cols[ i ],
-				blendMode: 'lighter',
+				blendMode: 'darker',
 				nr: i,
 				r: 60,
 				bx: bx,
