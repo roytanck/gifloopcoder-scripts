@@ -1,7 +1,7 @@
 function onGLC(glc) {
 	glc.loop();
-	glc.size( 500, 300 );
-	glc.setDuration( 3 );
+	glc.size( 1000, 600 );
+	glc.setDuration( 0.5 );
 	glc.setFPS( 30 );
 	glc.setMode( "single" );
 	glc.setEasing( false );
@@ -18,7 +18,7 @@ function onGLC(glc) {
 	var strs = [ 'GIF', 'LOOP', 'CODER' ];
 	var counter = 0;
 	var letters = 12; // calculate this to make it more flexible?
-	var spacing = 100;
+	var spacing = 200;
 
 	for( var s=0; s<strs.length; s++ ){
 
@@ -33,12 +33,7 @@ function onGLC(glc) {
 				h: spacing,
 				stroke: false,
 				fill: true,
-				/*fillStyle: color.hsv( 180+(counter/letters)*120, 1, 0.75 ),*/
-				fillStyle: function( t ){
-					return color.hsv( this.hval, 1, 0.75 + Math.sin( t*2*Math.PI ) * 0.1 );
-				},
-				phase: 1 - ( counter/letters ),
-				hval: 180+(counter/letters)*120
+				fillStyle: color.hsv( 180+(counter/letters)*120, 1, 0.75 ),
 			});
 
 			list.addText({
@@ -47,21 +42,11 @@ function onGLC(glc) {
 				y: s * spacing + spacing/2 - spacing/30,
 				stroke: false,
 				fill: true,
-				fillStyle: function( t ){
-					return color.rgba( 255, 255, 255, ( Math.sin( t*2*Math.PI ) * 0.2 ) + 0.8 );
-				},
-				shadowColor: function( t ){
-					return color.rgba( 255, 255, 255, ( Math.sin( t*2*Math.PI ) * 0.4 ) + 0.4 );
-				},
-				shadowOffsetX: 0,
-				shadowOffsetY: 0,
-				shadowBlur: 16,
-				fontSize: 70,
+				fillStyle: 'white',
+				fontSize: 140,
 				fontWeight: 'bold',
 				fontFamily: 'Roboto Condensed',
 				fontStyle: 'normal',
-				phase: 1 - ( counter/letters ),
-				nr: counter
 			});
 
 			counter++;
@@ -69,6 +54,5 @@ function onGLC(glc) {
 		}
 
 	}
-
 
 }
