@@ -1,12 +1,12 @@
 function onGLC(glc) {
 	glc.loop();
-	glc.size( 500, 300 );
-	glc.setDuration( 5 );
+	glc.size( 400, 400 );
+	glc.setDuration( 2 );
 	glc.setFPS( 25 );
 	glc.setMode( "single" );
 	glc.setEasing( false );
-	glc.setMaxColors( 64 );
-	glc.setQuality( 1 );
+	glc.setMaxColors( 256 );
+	glc.setQuality( 10 );
 	var list = glc.renderList,
 		width = glc.w,
 		height = glc.h,
@@ -14,114 +14,36 @@ function onGLC(glc) {
 
 	// your code goes here:
 	glc.styles.backgroundColor = color.rgba( 30, 30, 30, 1 );
+	var nrofFrames = 50;
+	var nrofCircles = 50;
+	var radiusIncrease = 3;
+	var dotRadius = 2;
 
-	var waves = 3;
-	var nr = 9;
+	var c = list.addContainer({
+		x: width/2,
+		y: height/2,
+	});
 
-	for( var w=0; w<waves; w++ ){
-
-		for( var i=0; i<nr; i++ ){
-
-			//if( i != 0 ){
-			
-				list.addCircle({
-					x: i * ( width/nr ),
-					y: function( t ){
-						return getY( t, this.nr, 0, false );
-					},
-					radius: 3,
-					stroke: false,
-					fill: true,
-					fillStyle: color.rgba( 255, 255, 255, 0.8 ),
-					nr: i,
-					phase: w / ( waves * 2.2 )
-				});
-
-				// first control point
-				list.addCircle({
-					x: function( t ){
-						return getX( t, this.nr, -1, true );
-					},
-					y: function( t ){
-						return getY( t, this.nr, -1, true );
-					},
-					radius: 3,
-					stroke: false,
-					fill: true,
-					fillStyle: color.rgba( 100, 150, 255, 0.8 ),
-					nr: i,
-					phase: w / ( waves * 2.2 )
-				});
-
-				// second control point
-				list.addCircle({
-					x: function( t ){
-						return getX( t, this.nr+1, 1, true );
-					},
-					y:function( t ){
-						return getY( t, this.nr+1, 1, true );
-					},
-					radius: 3,
-					stroke: false,
-					fill: true,
-					fillStyle: color.rgba( 255, 50, 50, 0.8 ),
-					nr: i,
-					phase: w / ( waves * 2.2 )
-				});
-			//}
-
-			list.addBezierCurve({
-				x0: function( t ){
-					return getX( t, this.nr, 0, true );
+	for( var i=0; i<nrofCircles+1; i++ ){
+		for( var d=0; d<i; d++ ){
+			list.addCircle({
+				x: Math.sin( (d/i) * 2 * Math.PI ) * ( i * radiusIncrease ),
+				y: -Math.cos( (d/i) * 2 * Math.PI ) * ( i * radiusIncrease ),
+				radius: dotRadius,
+				stroke: false,
+				fill: true,
+				/*fillStyle: 'white',*/
+				fillStyle: function( t ){
+					//var alpha =  0.5 + Math.sin( ( t + ( this.circleNr / nrofCircles ) ) * 2 * Math.PI ) * 0.5;
+					var currentFrame = Math.floor( t*nrofFrames );
+					var alpha = ( currentFrame == this.circleNr ) ? 1 : 0;
+					return color.rgba( 255, 255, 255, alpha );
 				},
-				y0: function( t ){
-					return getY( t, this.nr, 0, false );
-				},
-				x1: function( t ){
-					return getX( t, this.nr, -1, true );
-				},
-				y1: function( t ){
-					return getY( t, this.nr, -1, true );
-				},
-				x2: function( t ){
-					return getX( t, this.nr+1, 1, true );
-				},
-				y2: function( t ){
-					return getY( t, this.nr+1, 1, true );
-				},
-				x3: function( t ){
-					return getX( t, this.nr, 1, false );
-				},
-				y3: function( t ){
-					return getY( t, this.nr, 1, false );
-				},
-				stroke: true,
-				strokeStyle: color.rgba( 255, 255, 255, 0.3 ),
-				lineWidth: 2,
-				nr: i,
-				phase: w / ( waves * 2.2 )
+				parent: c,
+				circleNr: i,
+				phase: Math.random()
 			});
 		}
-
-	}
-
-
-	function getX( t, i, offset, reverse ){
-		var currentX = i * ( width / nr );
-		var offsetX = ( i + offset ) * ( width / nr );
-		if( reverse ){
-			return currentX - ( offsetX - currentX )/5;
-		}
-		return offsetX;
-	}
-
-	function getY( t, i, offset, reverse ){
-		var currentY = height/2 + Math.sin( ( t + ( i / nr ) ) * 2 * Math.PI ) * 100;
-		var offsetY = height/2 + Math.sin( ( t + ( (i + offset ) / nr ) ) * 2 * Math.PI ) * 100;
-		if( reverse ){
-			return currentY - ( offsetY - currentY )/5;
-		}
-		return offsetY;
 	}
 
 
