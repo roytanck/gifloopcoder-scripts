@@ -6,7 +6,7 @@ function onGLC(glc) {
 	glc.setMode( "single" );
 	glc.setEasing( false );
 	glc.setMaxColors( 256 );
-	glc.setQuality( 10 );
+	glc.setQuality( 1 );
 	var list = glc.renderList,
 		width = glc.w,
 		height = glc.h,
@@ -19,8 +19,8 @@ function onGLC(glc) {
 
 	for( var i=0; i<nr; i++ ){
 
-		var xpos = Math.sin( (i/nr) * 2 * Math.PI ) * radius;
-		var ypos = -Math.cos( (i/nr) * 2 * Math.PI ) * radius;
+		var xpos = Math.sin( (i/nr) * Math.PI ) * radius;
+		var ypos = -Math.cos( (i/nr) * Math.PI ) * radius;
 
 		list.addLine({
 			x0: width/2 + xpos,
@@ -38,14 +38,13 @@ function onGLC(glc) {
 			y: function( t ){
 				return height/2 + Math.sin( t*2*Math.PI ) * this.ypos;
 			},
-			radius: 6,
+			radius: 8,
 			stroke: false,
 			fill: true,
-			fillStyle: 'white',
-			phase: i / nr,
+			fillStyle: color.hsv( (i/nr)*360, 0.5, 1 ),
+			phase: (i/2) / nr,
 			xpos: xpos,
 			ypos: ypos,
-			nr: i
 		});
 
 	}
