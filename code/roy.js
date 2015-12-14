@@ -72,7 +72,7 @@ function onGLC(glc) {
 		list.addCircle({
 			x: width/2 + Math.sin( angle ) * dist,
 			y: height/2 - Math.cos( angle ) * dist,
-			radius: 6,
+			radius: [ 6, 2 ],
 			fill: true,
 			fillStyle: [ color.rgba( 150, 255, 200, 1 ), color.rgba( 150, 255, 200, 0 ) ],
 			stroke: false,
