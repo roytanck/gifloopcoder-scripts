@@ -13,14 +13,13 @@ function onGLC(glc) {
 		color = glc.color;
 
 	// your code goes here:
-	glc.styles.backgroundColor = color.rgba( 80, 80, 160, 1 );
 	var nr = 3;
 	var startX = 150;
 	var dist = 150;
 
 	var gradient = color.createLinearGradient( 0, -height/2, 0, height/2 );
     gradient.addColorStop( 0, '#112' );
-    gradient.addColorStop( 1, '#66a' );
+    gradient.addColorStop( 1, '#66b' );
 
     list.addRect({
     	x: width/2,
@@ -57,12 +56,12 @@ function onGLC(glc) {
 			shadowOffsetY: 0,
 			shadowBlur: 20,
 			nr: i,
-			phase: i/nr
+			phase: phase
 		});
 
 		var gradient = color.createRadialGradient( -18, -22, 0, -36, -44, 85 );
 		gradient.addColorStop( 0, 'white' );
-		gradient.addColorStop( 0.6, '#66a' );
+		gradient.addColorStop( 0.6, '#66b' );
 		gradient.addColorStop( 0.9, '#000' );
 		gradient.addColorStop( 1, '#224' );
 
@@ -74,7 +73,7 @@ function onGLC(glc) {
 			fille: true,
 			fillStyle: gradient,
 			nr: i,
-			phase: i/nr
+			phase: phase
 		});
 
 	}
