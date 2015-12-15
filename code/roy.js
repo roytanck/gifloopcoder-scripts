@@ -18,8 +18,9 @@ function onGLC(glc) {
 	var dist = 150;
 
 	var gradient = color.createLinearGradient( 0, -height/2, 0, height/2 );
-    gradient.addColorStop( 0, '#112' );
-    gradient.addColorStop( 1, '#66b' );
+    gradient.addColorStop( 0, '#000' );
+    gradient.addColorStop( 0.5, '#66b' );
+    gradient.addColorStop( 1, '#fff' );
 
     list.addRect({
     	x: width/2,
@@ -29,6 +30,7 @@ function onGLC(glc) {
     	stroke: false,	
     	fillStyle: gradient
     });
+
 
 	for( var i=0; i<nr; i++ ){
 
