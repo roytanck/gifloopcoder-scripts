@@ -18,18 +18,18 @@ function onGLC(glc) {
 	var dist = 150;
 
 	var gradient = color.createLinearGradient( 0, -height/2, 0, height/2 );
-    gradient.addColorStop( 0, '#224' );
-    gradient.addColorStop( 0.5, '#66b' );
-    gradient.addColorStop( 1, '#ddf' );
+	gradient.addColorStop( 0, '#224' );
+	gradient.addColorStop( 0.5, '#66b' );
+	gradient.addColorStop( 1, '#ddf' );
 
-    list.addRect({
-    	x: width/2,
-    	y: height/2,
-    	w: width,
-    	h: height,
-    	stroke: false,	
-    	fillStyle: gradient
-    });
+	list.addRect({
+		x: width/2,
+		y: height/2,
+		w: width,
+		h: height,
+		stroke: false,	
+		fillStyle: gradient
+	});
 
 
 	for( var i=0; i<nr; i++ ){
