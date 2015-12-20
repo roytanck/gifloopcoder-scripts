@@ -1,10 +1,12 @@
 function onGLC(glc) {
     glc.loop();
     glc.size(400, 400);
-    glc.setDuration( 4 );
+    glc.setDuration( 3 );
     glc.setFPS( 25 );
     glc.setMode( 'single' );
     glc.setEasing( false );
+	glc.setMaxColors( 64 );
+	glc.setQuality( 1 );
     var list = glc.renderList,
         width = glc.w,
         height = glc.h,
@@ -12,50 +14,45 @@ function onGLC(glc) {
 
     // your code goes here:
 
-	glc.styles.backgroundColor = color.rgba( 0, 0, 0, 1 );
-    var sizeX = 30;
-    var sizeY = 50;
-    var gutter = 5;
+	glc.styles.backgroundColor = color.rgba( 40, 40, 40, 1 );
+    var sizeX = 32;
+    var sizeY = 48;
+    var gutter = -3;
+    var gridX = Math.ceil( width/(sizeX+gutter)/2 ) + 1;
+    var gridY = Math.ceil( height/(sizeY+gutter)/2 ) + 1;
     
-    for( var x=0; x<width+sizeX; x+= sizeX*2 + gutter ){
-        for( var y=0; y<height+sizeY; y+= sizeY*2 + gutter ){
-
+    for( var x=-gridX; x<gridX; x++ ){
+        for( var y=-gridY; y<gridY; y++ ){
+            
+            var xpos = width/2 + x * ( sizeX*2 + gutter ) + ( ( y%2==0 ) ? -( sizeX + gutter/2 ) : 0 );
+			var ypos = height/2 + y * ( sizeY + gutter );
+            var dist = Math.sqrt( Math.pow( width/2-xpos, 2 ) + Math.pow( height/2-ypos, 2 ) );
+            
             list.addStar({
-                x: x,
-                y: y,
+                x: xpos,
+                y: ypos,
                 points: 2,
                 innerRadius: function( t ){
-                    return Math.sin( t*2*Math.PI ) * sizeX;
+                    return Math.sin( t*Math.PI ) * sizeX;
                 },
                 outerRadius: sizeY,
                 stroke: false,
-                rotation: 90,
+                rotation: 0,
                 fillStyle: function(t){
-                    if( t < 0.25 ){
-                        var sat = t*4;
+                    if( t < 0.5 ){
+                        var sat = 0.75 + t/2;
                         return color.hsv( this.frontColor, sat, 1 );
-                    } else if( t >=0.25 && t < 0.5 ) {
-                        var val = 1 - (t-0.25)*2;
-                        return color.hsv( this.frontColor, 1, val );
-                    } else if( t >=0.5 && t < 0.75 ) {
-                        var sat = (t-0.5)*4;
-                        return color.hsv( this.backColor, sat, 1 );
                     } else {
-                        var val = 1 - (t-0.75)*2;
-                        return color.hsv( this.backColor, 1, val );
+                        var val = 1 - (t-0.5);
+                        return color.hsv( this.frontColor, 1, val );
                     }
                 },
-//                 shadowColor: color.rgba( 0, 0, 0, 0.5 ),
-//                 shadowOffsetX: 50,
-//                 shadowOffsetY: 10,
-//                 shadowBlur: 40,
-                frontColor: 0,
-                backColor: 200
+                fillStyle: '#fc0',
+                phase: dist/1200,
+                frontColor: 200,
             });
             
         }
     }
-
-
 
 }
