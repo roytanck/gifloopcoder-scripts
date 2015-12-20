@@ -1,52 +1,61 @@
 function onGLC(glc) {
-	glc.loop();
-	glc.size( 500, 300 );
-	glc.setDuration( 3 );
-	glc.setFPS( 25 );
-	glc.setMode( "single" );
-	glc.setEasing( false );
-	glc.setMaxColors( 32 );
-	glc.setQuality( 1 );
-	var list = glc.renderList,
-		width = glc.w,
-		height = glc.h,
-		color = glc.color;
+    glc.loop();
+    glc.size(400, 400);
+    glc.setDuration( 4 );
+    glc.setFPS( 25 );
+    glc.setMode( 'single' );
+    glc.setEasing( false );
+    var list = glc.renderList,
+        width = glc.w,
+        height = glc.h,
+        color = glc.color;
 
-	// your code goes here:
-	glc.styles.backgroundColor = color.rgba( 45, 50, 30, 1 );
+    // your code goes here:
 
-	var waves = 30;
-	var ypos = 40;
+	glc.styles.backgroundColor = color.rgba( 0, 0, 0, 1 );
+    var sizeX = 30;
+    var sizeY = 50;
+    var gutter = 5;
+    
+    for( var x=0; x<width+sizeX; x+= sizeX*2 + gutter ){
+        for( var y=0; y<height+sizeY; y+= sizeY*2 + gutter ){
 
-	for( var i=0; i<waves; i++ ){
+            list.addStar({
+                x: x,
+                y: y,
+                points: 2,
+                innerRadius: function( t ){
+                    return Math.sin( t*2*Math.PI ) * sizeX;
+                },
+                outerRadius: sizeY,
+                stroke: false,
+                rotation: 90,
+                fillStyle: function(t){
+                    if( t < 0.25 ){
+                        var sat = t*4;
+                        return color.hsv( this.frontColor, sat, 1 );
+                    } else if( t >=0.25 && t < 0.5 ) {
+                        var val = 1 - (t-0.25)*2;
+                        return color.hsv( this.frontColor, 1, val );
+                    } else if( t >=0.5 && t < 0.75 ) {
+                        var sat = (t-0.5)*4;
+                        return color.hsv( this.backColor, sat, 1 );
+                    } else {
+                        var val = 1 - (t-0.75)*2;
+                        return color.hsv( this.backColor, 1, val );
+                    }
+                },
+//                 shadowColor: color.rgba( 0, 0, 0, 0.5 ),
+//                 shadowOffsetX: 50,
+//                 shadowOffsetY: 10,
+//                 shadowBlur: 40,
+                frontColor: 0,
+                backColor: 200
+            });
+            
+        }
+    }
 
-		var wl = 50 + i*10;
-		var amp = 5 + i*1;
-		var path = [];
 
-		for( var l=-( width/2 + wl*2 ); l<width/2 + wl*2; l+=wl/40 ){
-			var x = l;
-			var y = Math.sin( (l/wl)*2*Math.PI ) * amp;
-			path.push( x );
-			path.push( y );
-		}
-
-		var c = list.addContainer({
-			x: [ width/2, (width/2)-wl ],
-			y: ypos,
-			phase: ypos/225
-		});
-
-		var w = list.addPath({
-			x: 0,
-			y: 0,
-			strokeStyle: color.rgba( 255, 255, 255, i/waves ),
-			lineWidth: 2,
-			path: path,
-			parent: c
-		});
-
-		ypos = ypos * 1.073;
-	}
 
 }
