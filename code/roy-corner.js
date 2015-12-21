@@ -14,7 +14,7 @@ function onGLC(glc) {
 
 	// your code goes here:
 	glc.styles.backgroundColor = color.rgba( 0, 0, 0, 1 );
-	var nr = 39;
+	var nr = 31;
 	var v1 = 50;
 	var v2 = width -50;
 	var padding = 0.1
