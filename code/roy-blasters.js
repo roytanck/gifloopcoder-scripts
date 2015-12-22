@@ -2,7 +2,7 @@ function onGLC(glc) {
 	glc.loop();
 	glc.size(600, 400);
 	glc.setDuration(1.5);
-	glc.setFPS(60);
+	glc.setFPS(25);
 	glc.setMode('single');
 	glc.setEasing(false);
 	var list = glc.renderList,
@@ -12,9 +12,9 @@ function onGLC(glc) {
 
 	// your code goes here:
 	glc.styles.backgroundColor = color.rgba( 40, 60, 80, 1 );
-	var rebels = 25;
-	var stormtroopers = 45;
-	var battlefield = 1200;
+	var rebels = 35;
+	var stormtroopers = 50;
+	var battlefield = 900;
 	
 	for( var i=0; i<rebels; i++ ){
 		
@@ -31,7 +31,7 @@ function onGLC(glc) {
 			y0: height/2 + blasterY,
 			x1: width/2 - targetX,
 			y1: height/2 - targetY,
-			segmentLength: 60,
+			segmentLength: 80,
 			strokeStyle: color.rgba( 0, 255, 0, 1 ),
 			lineWidth: 5,
 			blendMode: 'lighter',
@@ -59,7 +59,7 @@ function onGLC(glc) {
 			y0: height/2 + blasterY,
 			x1: width/2 - targetX,
 			y1: height/2 - targetY,
-			segmentLength: 60,
+			segmentLength: 80,
 			strokeStyle: color.rgba( 255, 0, 0, 1 ),
 			lineWidth: 5,
 			blendMode: 'lighter',
