@@ -16,7 +16,7 @@ function onGLC(glc) {
 	glc.styles.backgroundColor = color.rgba( 0, 0, 0, 1 );
 	var nr = 31;
 	var v1 = 50;
-	var v2 = width -50;
+	var v2 = width - 50;
 	var padding = 0.1
 	var dist = ( height * (1-padding*2) ) / nr;
 	
@@ -29,7 +29,7 @@ function onGLC(glc) {
 			y1: height * padding + dist * i,
 			segmentLength: 180,
 			strokeStyle: color.hsva( 200, 1, 1, 1 ),
-			lineWidth: 4,
+			lineWidth: [0,5],
 			shadowColor: color.hsva( 200, 1, 1, 1 ),
 			shadowOffsetX: 0,
 			shadowOffsetY: 0,
@@ -45,7 +45,7 @@ function onGLC(glc) {
 			y1: height * padding + dist * i,
 			segmentLength: 180,
 			strokeStyle: color.hsva( 210, 1, 1, 1 ),
-			lineWidth: 2,
+			lineWidth: [0,2.5],
 			shadowColor: color.hsva( 210, 1, 1, 1 ),
 			shadowOffsetX: 0,
 			shadowOffsetY: 0,
