@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GIF Loop Coder</title>
-    <link rel="stylesheet" type="text/css" href="../gifloopcoder/sketches/quicksettings_minimal.css">
+	<title>Gif Loop Coder</title>
+
+	<link rel="stylesheet" type="text/css" href="../gifloopcoder/app/styles/styles.css">
+	<link rel="stylesheet" type="text/css" href="../gifloopcoder/app/styles/codemirror.css">
+
 </head>
 <body>
-
-    <!-- This should point to the sketch you want to run -->
-    <script type="text/javascript" src="code/roy.js"></script>
-
-    <!-- Don't touch this unless you move your sketches folder. If so, update the path to require.js -->
-    <script type="text/javascript" src="../gifloopcoder/sketches/glc-min.js"></script>
-
+	<div id="content"></div>
+	<script type="text/javascript">
+	glcConfig = {
+		externalEditor: false,
+		useTabs: true,
+		canvasWidth: 400,
+		canvasHeight: 400
+	};
+	</script>
+	<!-- To use an external editor, set externalEditor to true above. -->
+	<!-- Then uncomment the following line and set the path to your sketch JavaScript file. -->
+	<!-- <script type="text/javascript" src="code/roy.js"></script> -->
+	<script type="text/javascript" src="../gifloopcoder/app/glc-min.js"></script>
 </body>
 </html>
