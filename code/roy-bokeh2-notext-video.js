@@ -14,7 +14,7 @@ function onGLC(glc) {
 
     // your code goes here:
     var baseColor = Math.random() * 360; // 160
-    var colorSpread = 60 + Math.random() * 300; // 120
+    var colorSpread = 60 + Math.random() * 100; // 120
     var backColor = Math.round( baseColor + Math.random() * colorSpread ); // 200
     var backBrightness = Math.random() * 0.25;
     glc.styles.backgroundColor = color.hsv( backColor, 1, backBrightness );
