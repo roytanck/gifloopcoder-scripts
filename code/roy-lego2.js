@@ -1,7 +1,7 @@
 function onGLC(glc) {
     glc.loop();
-    glc.size( 450, 300 );
-    glc.setDuration( 2 );
+    glc.size( 600, 400 );
+    glc.setDuration( 3 );
     glc.setFPS( 25 );
     glc.setMode( 'single' );
     glc.setEasing( false );
@@ -16,7 +16,7 @@ function onGLC(glc) {
     glc.styles.backgroundColor = color.hsv( 200, 1, 1 );
 
     var grid = 7;
-    var brickSize = 48;
+    var brickSize = 58;
     
     for( var x=-grid; x<=grid; x++ ){
 	    for( var y=-grid; y<=grid; y++ ){
