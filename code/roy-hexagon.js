@@ -1,6 +1,6 @@
 function onGLC(glc) {
 	glc.loop();
-	glc.size(400, 400);
+	glc.size(800, 800);
 	glc.setDuration(2);
 	glc.setFPS(30);
 	glc.setMode('single');
@@ -16,8 +16,8 @@ function onGLC(glc) {
 	glc.styles.backgroundColor = '#234';
 	var nr = 5;
 	var corners = [];
-	var size = 6;
-	var dist = 35;
+	var size = 16;
+	var dist = 70;
 		
 	var c = list.addContainer({
 		x: width / 2,
