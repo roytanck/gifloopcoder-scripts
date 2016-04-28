@@ -2,7 +2,7 @@ var pixels = [];
 
 function onGLC(glc) {
     glc.loop();
-    glc.size( 360, 360);
+    glc.size( 400, 400);
     glc.setDuration( 1 );
     glc.setFPS( 25 );
     glc.setMode('single');
@@ -15,9 +15,9 @@ function onGLC(glc) {
         color = glc.color;
 
     // your code goes here:
-    var imgx = 60;
-    var imgy = 60;
-    var blocksize = 6;
+    var imgx = 80;
+    var imgy = 80;
+    var blocksize = 5;
     var hvar = 10;
     var svar = 0.1;
     var vvar = 0.1;
@@ -25,7 +25,7 @@ function onGLC(glc) {
 	var img = list.addImage({
 		x: imgx/2,
 		y: imgy/2,
-		url: "file:///C:/Users/Roy/Desktop/glc-windows/doutzen-square.png"
+		url: "file:///C:/Users/Roy/Desktop/glc-windows/solo80.png"
 	});
 	
     for( var x=0; x<imgx; x++ ){
