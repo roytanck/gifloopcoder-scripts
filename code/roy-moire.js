@@ -1,18 +1,20 @@
 function onGLC(glc) {
     glc.loop();
-    glc.size(600, 600);
+    glc.size(550, 550);
     glc.setDuration(5);
     glc.setFPS(25);
     glc.setMode('single');
     glc.setEasing(false);
+    glc.setQuality(20);
+    glc.setMaxColors(128);
     var list = glc.renderList,
         width = glc.w,
         height = glc.h,
         color = glc.color;
 
     // your code goes here:
-    glc.styles.backgroundColor = '#345';
-	nr = 51
+    glc.styles.backgroundColor = '#123';
+    nr = 63
     
     for( var j=0; j<2; j++ ){
         
@@ -30,7 +32,7 @@ function onGLC(glc) {
                         return height/2 - Math.cos( t*2*Math.PI + this._rot ) * this._r;
                     }
                 },
-                radius: i*4,
+                radius: i*3,
                 stroke: true,
                 strokeStyle: color.rgba( 255, 255, 255, (i/nr) ),//'#fff',
                 fill: false,
@@ -39,7 +41,7 @@ function onGLC(glc) {
                 _r: (nr-i),
                 _j: j,
                 _rot: rot,
-                phase: (i/nr)/2 + (j/2)
+                phase: (i/nr)/3 + (j/2)
             });
 
         }
