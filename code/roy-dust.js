@@ -28,10 +28,6 @@ function onGLC(glc) {
         var ty = sy - Math.cos( angle ) * dist;
         
         list.addCircle({
-            _sx: sx,
-            _sy: sy,
-            _tx: tx,
-            _ty: ty,
             x: [ (width/2)+(sx+(0.025*tx)), (width/2)+tx ],
             y: [ (height/2)+(sy+(0.025*ty)), (height/2)+ty ],
             radius: function(t){
